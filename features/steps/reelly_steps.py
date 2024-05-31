@@ -51,3 +51,4 @@ def click_high_demand(context):
 @then('verify high demand')
 def verify_high_demand(context):
     word = context.driver.find_elements(By.CSS_SELECTOR, 'div[class="commision_box"]')
+    sleep(2)
