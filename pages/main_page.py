@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import Page
+from time import sleep
 class MainPage(Page):
     emailbox = By.CSS_SELECTOR, 'input[wized="emailInput"]'
     passwordbox = By.CSS_SELECTOR, 'input[wized="passwordInput"]'
@@ -8,8 +9,8 @@ class MainPage(Page):
     email = 'alexwatsonja@gmail.com'
     def open_main(self):
         self.driver.get("https://soft.reelly.io/sign-in")
-        self.find_element(*self.emailbox)
+        sleep(2)
         self.input_text(self.email, *self.emailbox)
-        self.find_element(*self.passwordbox)
         self.input_text(self.password, *self.passwordbox)
         self.click(*self.CONTINUE)
+        sleep(3)

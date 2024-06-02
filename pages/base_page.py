@@ -5,13 +5,13 @@ class Page:
         self.driver = driver
 
     def find_element(self, *locator):
-        self.driver.find.element(*locator)
+        self.driver.find_element(*locator)
 
     def find_elements(self, *locator):
-        self.driver.find.elements(*locator)
+        self.driver.find_elements(*locator)
 
     def click(self, *locator):
-        self.driver.find.element(*locator).click()
+        self.driver.find_element(*locator).click()
 
     def input_text(self, text, *locator):
-        self.driver.find_element(*locator).sen_keys(text)
+        self.driver.find_element(*locator).send_keys(text)
