@@ -1,5 +1,6 @@
 # Created by thesu at 5/30/2024
 Feature: Reelly exploratory test
+  # Enter feature description here
 
   Scenario: User can filter by sale status High Demand
     Given Open the webpage
