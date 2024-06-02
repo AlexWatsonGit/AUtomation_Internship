@@ -13,6 +13,8 @@ CONTINUE = By.CSS_SELECTOR, 'a[class="login-button w-button"]'
 OFF_PLAN = By.CSS_SELECTOR, 'a[class="_1-link-menu w-inline-block w--current"][aria-current="page"]'
 CORRECTPAGE = By.CSS_SELECTOR, 'div[class="page-title off_plan"]'
 FILTER = By.CSS_SELECTOR, 'a[class="filter-button w-inline-block"]'
+HIGHDEMAND = By.CSS_SELECTOR, 'div[wized="priorityStatusHighDemand"][class="tag-properties margin-bottom-8"]'
+HIGHDEMANDTXT = By.CSS_SELECTOR, 'div[class="commision_box"]'
 @given('Open the webpage')
 def Open_the_webpage(context):
     context.driver.get("https://soft.reelly.io/sign-in")
@@ -42,10 +44,10 @@ def click_on_filter_icon(context):
 
 @when('click on high demand')
 def click_high_demand(context):
-    context.driver.find_element(By.CSS_SELECTOR, 'div[wized="priorityStatusHighDemand"][class="tag-properties margin-bottom-8"]').click()
+    context.driver.find_element(*HIGHDEMAND).click()
     sleep(5)
 
 @then('verify high demand')
 def verify_high_demand(context):
-    word = context.driver.find_elements(By.CSS_SELECTOR, 'div[class="commision_box"]')
+    context.driver.find_elements(*HIGHDEMANDTXT)
     sleep(2)
