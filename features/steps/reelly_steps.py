@@ -20,11 +20,9 @@ def Open_the_webpage(context):
 @when('Enter login email')
 def Enter_login_email(context):
     context.driver.find_element(*emailbox).send_keys(email)
-    sleep(2)
 @when('Enter login password')
 def Enter_login_password(context):
     context.driver.find_element(*passwordbox).send_keys(password)
-    sleep(1)
 @when('click continue')
 def click_continue(context):
     context.driver.find_element(*CONTINUE).click()
