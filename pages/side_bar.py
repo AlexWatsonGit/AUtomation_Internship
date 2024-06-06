@@ -8,6 +8,7 @@ class SideBar(Page):
     HIGHDEMAND = By.CSS_SELECTOR, 'div[wized="priorityStatusHighDemand"][class="tag-properties margin-bottom-8"]'
 
     def navigate_to_highdemand(self):
+        sleep(5)
         self.click(*self.OFF_PLAN)
         sleep(3)
         self.find_element(*self.CORRECTPAGE)
