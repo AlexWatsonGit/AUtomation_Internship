@@ -40,7 +40,7 @@ def browser_init(context,scenario_name):
     # service = Service(GeckoDriverManager().install())
     # context.driver = webdriver.Firefox(options=options, service=service)
 
-   #Cloud Testing/BrowserStack
+   #Cloud Testing/ BrowserStack
 
     bs_user = 'alex_bqJ0ym'
     bs_key = 'FM5Nyxf1q8bg5X8qnx5K'
