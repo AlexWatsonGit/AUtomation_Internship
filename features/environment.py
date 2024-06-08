@@ -8,7 +8,7 @@ from selenium.webdriver.firefox.options import Options
 from app.application import Application
 
 
-def browser_init(context):
+def browser_init(context,scenario_name):
     """
     :param context: Behave context
     """
@@ -32,14 +32,29 @@ def browser_init(context):
     # context.driver = webdriver.Firefox(service=service)
 
     #Firefox headless
-    options = webdriver.FirefoxOptions()
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    options.add_argument("--headless")
-    # options.add_argument('headless')
-    service = Service(GeckoDriverManager().install())
-    context.driver = webdriver.Firefox(options=options, service=service)
+    # options = webdriver.FirefoxOptions()
+    # options.add_argument("--window-size=1920,1080")
+    # options.add_argument("--start-maximized")
+    # options.add_argument("--headless")
+    # # options.add_argument('headless')
+    # service = Service(GeckoDriverManager().install())
+    # context.driver = webdriver.Firefox(options=options, service=service)
 
+   #Cloud Testing/BrowserStack
+
+    bs_user = 'alex_bqJ0ym'
+    bs_key = 'FM5Nyxf1q8bg5X8qnx5K'
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+
+    options = Options()
+    bstack_options = {
+        'os': 'OS X',
+        'osVersion': 'Sonoma',
+        'browserName': 'Firefox',
+        'sessionName': scenario_name
+    }
+    options.set_capability('bstack:options', bstack_options)
+    context.driver = webdriver.Remote(command_executor=url, options=options)
 
 
 
@@ -56,7 +71,7 @@ def browser_init(context):
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
-    browser_init(context)
+    browser_init(context, scenario.name)
 
 
 def before_step(context, step):
