@@ -12,10 +12,10 @@ def browser_init(context,scenario_name):
     """
     :param context: Behave context
     """
-    #chrome without headless
-    # driver_path = ChromeDriverManager().install()
-    # service = Service(driver_path)
-    # context.driver = webdriver.Chrome(service=service)
+    # chrome without headless
+    driver_path = ChromeDriverManager().install()
+    service = Service(driver_path)
+    context.driver = webdriver.Chrome(service=service)
 
     #chrome headless
     # options = webdriver.ChromeOptions()
@@ -42,19 +42,19 @@ def browser_init(context,scenario_name):
 
    #Cloud Testing/ BrowserStack
 
-    bs_user = 'alex_bqJ0ym'
-    bs_key = 'FM5Nyxf1q8bg5X8qnx5K'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-
-    options = Options()
-    bstack_options = {
-        'os': 'OS X',
-        'osVersion': 'Sonoma',
-        'browserName': 'Firefox',
-        'sessionName': scenario_name
-    }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+    # bs_user = 'alex_bqJ0ym'
+    # bs_key = 'FM5Nyxf1q8bg5X8qnx5K'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    #
+    # options = Options()
+    # bstack_options = {
+    #     'os': 'OS X',
+    #     'osVersion': 'Sonoma',
+    #     'browserName': 'Firefox',
+    #     'sessionName': scenario_name
+    # }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
 
 
 
@@ -72,12 +72,8 @@ def browser_init(context,scenario_name):
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
     browser_init(context, scenario.name)
-
-
 def before_step(context, step):
     print('\nStarted step: ', step)
-
-
 def after_step(context, step):
     if step.status == 'failed':
         print('\nStep failed: ', step)
